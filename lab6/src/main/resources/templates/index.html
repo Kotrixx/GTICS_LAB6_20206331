@@ -4,14 +4,11 @@
 <body>
 <main>
     <div class="container px-4 py-5">
-        <h1 class="pb-2 border-bottom">Gestión de Northwind</h1>
-        <a th:href="@{/sitios}">Ir a Sitios</a><br/>
-        <a th:href="@{/equipos}">Ir a Equipos</a><br/>
-        <a th:href="@{/stats}">Estadisticas</a>
-        <div class="mt-5">
-        </div>
+        <h1>Index</h1>
+        <div th:insert="fragments/navbar :: navbar"></div>
 
     </div>
+
 </main>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
