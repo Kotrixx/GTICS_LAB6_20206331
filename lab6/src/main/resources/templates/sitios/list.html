@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/head :: cabecera('Lista Sitios')">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <title>Lista Sitios</title>
+    </head>
+    <body>
+        <main>
+            <div class="container px-4 py-5">
+                <h1 class="pb-2 border-bottom">Lista de Sitios</h1>
+                <div class="d-flex mt-3 mb-4">
+                    <a class="btn btn-primary" th:href="@{'/shipper/new'}">Nuevo Sitio</a>
+                    <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
+                </div>
+                <div class="alert alert-primary" role="alert" th:if="${msg != null}" th:text="${msg}">
+                    A simple primary alert—check it out!
+                </div>
+                <form method="post" th:action="@{/shipper/BuscarTransportistas}">
+                    <input name="searchField" class="form-control mb-3" type="text" placeholder="Search"/>
+                </form>
+                <table class="table">
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Locacion</th>
+                        <th>Fecha de instalacion</th>
+                        <th>Latitud</th>
+                        <th>Longitud</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr th:each="sitio, info : ${listaSitio}">
+                        <td th:text="${info.index + 1}"></td>
+                        <td th:text="${sitio.siteName}"></td>
+                        <td th:text="${sitio.locationID.country +' '+sitio.locationID.city }"></td>
+                        <td th:text="${sitio.latitude}"></td>
+                        <td th:text="${sitio.longitude}"></td>
+                        <td><a class="btn btn-primary" th:href="@{'/shipper/edit' + '?id=' + ${sitio.id}}">Editar</a>
+                        </td>
+                        <td><a class="btn btn-danger" th:href="@{'/shipper/delete' + '?id=' + ${sitio.id}}">Borrar</a>
+                        </td>
+                    </tr>
+                </table>
+                <hr>
+
+            </div>
+        </main>
+        <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    </body>
+</html>

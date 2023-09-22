@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+        <title>Nuevo Transportista</title>
+    </head>
+    <body>
+        <main>
+            <div class="container px-4 py-5">
+                <h1 class="pb-2 mb-3 border-bottom">Nuevo Transportista</h1>
+                <form method="post" th:action="@{'/shipper/save'}" class="mt-2">
+                    <div class="mb-3">
+                        <label for="companyname" class="form-label">Nombre de la compañía</label>
+                        <input name="companyname" type="text" class="form-control" id="companyname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Teléfono</label>
+                        <input name="phone" type="text" class="form-control" id="phone">
+                    </div>
+                    <a th:href="@{'/shipper/list'}" class="btn btn-danger">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </form>
+            </div>
+        </main>
+        <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    </body>
+</html>
