@@ -17,9 +17,10 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="category" class="form-label">Locacion</label>
-                        <select name="category" class="form-select" id="category">
-                            <option th:each="location : ${listaLocations}" th:text="${location.locationCountryCity}"
+                        <label for="locationID" class="form-label">Locacion</label>
+                        <select name="locationID" class="form-select" id="locationID">
+                            <option th:value="-1" th:text="${'Seleccione un sitio'}"></option>
+                            <option th:each="location : ${listaLocations}" th:text="${location.getLoc()}"
                                     th:value="${location.getIdLocation()}"></option>
                         </select>
                     </div>

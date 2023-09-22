@@ -8,7 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/sitios")
@@ -32,11 +35,23 @@ public class SitioController {
         model.addAttribute("listaLocations", locationRepository.obtenerComboBoxSitio());
         return "sitios/newFrm";
     }
+    @GetMapping("/borrar")
+    public String borrarTransportista(@RequestParam("id") int id, RedirectAttributes attributes) {
 
+        Optional<Site> optionalSite = sitioRepository.findById(id);
+
+        if (optionalSite.isPresent()) {
+            Site site = optionalSite.get();
+            String siteName = site.getSiteName();
+            sitioRepository.deleteById(id);
+            attributes.addFlashAttribute("msg", "Sitio " +siteName+ " borrado exitosamente");
+        }
+        return "redirect:/sitios";
+
+    }
     @PostMapping("/guardarNuevo")
     public String guardarNuevoSitio(Site site, RedirectAttributes attr) {
-        String estado = site.getId() == null ? "creado" : "actualizado";
-        attr.addFlashAttribute("msg", "Sitio " + estado + " correctamente");
+        attr.addFlashAttribute("msg", "Sitio " + site.getSiteName() + " creado correctamente");
         sitioRepository.save(site);
         return "redirect:/sitios";
     }
