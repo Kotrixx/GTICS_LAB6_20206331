@@ -10,6 +10,9 @@
         <main>
             <div class="container px-4 py-5">
                 <h1 class="pb-2 border-bottom">Lista de Sitios</h1>
+                <div th:insert="fragments/navbar :: navbar"></div>
+
+
                 <div class="d-flex mt-3 mb-4">
                     <a class="btn btn-primary" th:href="@{'/shipper/new'}">Nuevo Sitio</a>
                     <a class="btn btn-secondary ms-auto" th:href="@{'/'}">Regresar</a>
