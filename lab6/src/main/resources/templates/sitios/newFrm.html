@@ -4,22 +4,38 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-        <title>Nuevo Transportista</title>
+        <title>Nuevo Sitio</title>
     </head>
     <body>
         <main>
             <div class="container px-4 py-5">
-                <h1 class="pb-2 mb-3 border-bottom">Nuevo Transportista</h1>
-                <form method="post" th:action="@{'/shipper/save'}" class="mt-2">
+                <h1 class="pb-2 mb-3 border-bottom">Nuevo Sitio</h1>
+                <form method="post" th:action="@{'/sitios/guardarNuevo'}" class="mt-2">
                     <div class="mb-3">
-                        <label for="companyname" class="form-label">Nombre de la compañía</label>
-                        <input name="companyname" type="text" class="form-control" id="companyname">
+                        <label for="siteName" class="form-label">Nombre</label>
+                        <input name="siteName" type="text" class="form-control" id="siteName">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Locacion</label>
+                        <select name="category" class="form-select" id="category">
+                            <option th:each="location : ${listaLocations}" th:text="${location.locationCountryCity}"
+                                    th:value="${location.getIdLocation()}"></option>
+                        </select>
                     </div>
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Teléfono</label>
-                        <input name="phone" type="text" class="form-control" id="phone">
+                        <label for="installationDate" class="form-label">Fecha de instalacion(AAAA-MM-DD)</label>
+                        <input name="installationDate" type="text" class="form-control" id="installationDate">
                     </div>
-                    <a th:href="@{'/shipper/list'}" class="btn btn-danger">Cancelar</a>
+                    <div class="mb-3">
+                        <label for="latitude" class="form-label">Latitud</label>
+                        <input name="latitude" type="text" class="form-control" id="latitude">
+                    </div>
+                    <div class="mb-3">
+                        <label for="longitude" class="form-label">Longitud</label>
+                        <input name="longitude" type="text" class="form-control" id="longitude">
+                    </div>
+                    <a th:href="@{'/sitios'}" class="btn btn-danger">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Registrar</button>
                 </form>
             </div>
